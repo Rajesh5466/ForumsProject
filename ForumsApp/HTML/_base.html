@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Share Build Learn</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        a:visited {
+            color: RoyalBlue;
+        }
+
+        a:hover {
+            color: Teal;
+        }
+        th,td {
+             padding: 10px 15px;
+        }
+        .navbar,navbar-inverse
+        {
+            float:right;
+        }
+    </style>
+</head>
+
+<body style="text-align:center;background-image:url(https://image.shutterstock.com/image-photo/blue-bright-colour-background-260nw-336497255.jpg);background-size:cover;">
+    <!--<img src="ForumsApp/HTML/logo.png" >-->
+    <a href="{% url 'ForumsApp:allQuestions' %}"><h4 style="margin-right:1150px;color:DarkMagenta"><b style="font-size:30px">S</b>hare<b style="font-size:30px">B</b>uild<b style="font-size:30px">L</b>earn</h4></a>
+    {% if request.user.is_authenticated %}
+        <nav class="navbar navbar-inverse">
+            <a href="{% url 'ForumsApp:logout' %}"><button type="button" class="btn btn-default active,btn btn-info btn-sm,navbar-right" >Log Out</button></a>
+        </nav>
+        <br>
+        <br>
+        <br>
+        <h2 style="color:ForestGreen;font-family:Comic Sans MS"><strong>Welcome {{user.first_name}}</strong></h2>
+        <center>
+            <br>
+            <table style="text-align:center;background-color:PowderBlue;background:transparent;" >
+                <tr>
+                    <th><a href="{% url 'ForumsApp:allQuestions' %}" onclick="change_color()">Questions</a></th>
+                    <th><a href="{% url 'ForumsApp:unanswered' %}">Unanswered</a></th>
+                    <th><a href="{% url 'ForumsApp:getUsers' %}">Users</a></th>
+                    <th><a href="{% url 'ForumsApp:TagSearch'%}">Tags</a></th>
+                    <th><a href="{% url 'ForumsApp:askQuestion' %}">Ask Question</a></th>
+                    <th><a href="/forums/about/">About</a></th>
+                </tr>
+            </table>
+            <br>
+            <br>
+        </center>
+    {% endif %}
+    <div class="container">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>

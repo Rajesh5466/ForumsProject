@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<center>
+<h3 style="align:center;color:black">{{answerinfo.description}}<sub> - by {{answerinfo.username__username}}</sub></h3><br>
+    {% if datalen %}
+        <table style="text-align:center;background-color:#E5EBF8">
+        <tr>
+            <th>Description</th>
+            <th>User who posted</th>
+            <th>Permissions</th>
+        </tr>
+        {% for comment in data %}
+        <tr>
+            <td>{{comment.description }}</td>
+            <td>{{comment.username__username}}</td>
+            {% if request.user.username == comment.username__username %}
+                <td><a href="{% url 'ForumsApp:editComment' answerinfo.question_id answerinfo.id comment.id%}">CommentEdit</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+    <h3 style="color:black">No comments Yet &#9786</h3>
+    {% endif %}
+<br><a href="{% url 'ForumsApp:postComment' answerinfo.question_id answerinfo.id%}"><button class="btn btn-default active,btn btn-info btn-sm,navbar-right">Post your Comment</button></a>
+<a href="{% url 'ForumsApp:answer' answerinfo.question_id %}"><button class="btn btn-default active,btn btn-info btn-sm,navbar-right">Go Back</button></a>
+</center>
+{% endblock %}

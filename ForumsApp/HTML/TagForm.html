@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class="btn btn-default active,btn btn-info btn-sm" type="submit" value="search"/>
+</form>
+<br>
+<br>
+{% for tag in tags %}
+<a href="{% url 'ForumsApp:tags' tag.0 %}"><BUTTON>{{tag.0}}</BUTTON></a> * <b>{{tag.1}}</b> &emsp;
+{% endfor %}
+{% endblock %}

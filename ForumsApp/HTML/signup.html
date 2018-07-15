@@ -1,0 +1,55 @@
+{% extends "_base.html" %}
+
+{% block content %}
+{% if not request.user.is_authenticated %}
+<center>
+    <br>
+    <div style="width:400px;border:1px solid black;border-radius:20px;">
+        <br>
+        <center><h3><b>Create your Account</b></h3></center>
+        <form method="post">
+            {% csrf_token %}
+            <div >
+                <br>
+                <table>
+                    <tr><td>
+                    <label for="{{form.first_name.id_for_label}}">
+                        Firstname:
+                    </label>
+                        {{form.first_name}}
+                    </td></tr>
+                    <tr><td>
+                    <label for="{{form.last_name.id_for_label}}">
+                        Lastname:
+                    </label>
+                        {{form.last_name}}
+                    </td></tr>
+                    <tr><td>
+                    <label for="{{form.email.id_for_label}}">
+                        Email:&emsp;&emsp;
+                    </label>
+                        {{form.email}}
+                    </td></tr>
+                    <tr><td>
+                    <label for="{{form.username.id_for_label}}">
+                        Username:
+                    </label>
+                        {{form.username}}
+                    </td></tr>
+                    <tr><td>
+                    <label for="{{form.password.id_for_label}}">
+                        Password :
+                    </label>
+                        {{form.password}}
+                    </td></tr>
+                    </table>
+                </div>
+            <br>
+            &emsp;&emsp;<input class="btn btn-default active,btn btn-info btn-sm" type="submit" value="Sign Up"/>&emsp;<br>
+            &emsp;Have an account? <a href="{% url 'ForumsApp:login' %}">Login</a>
+        </form>
+    <br>
+    </div>
+</center>
+{% endif %}
+{% endblock %}

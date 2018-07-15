@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<center>
+    <table border="1px" style="text-align:center">
+    <tr>
+        <th>Total answers</th>
+        <th>Question title</th>
+    </tr>
+    {% for question in questions %}
+    <tr>
+    <td>{{question.count}}</td>
+    <td><a href="{% url 'ForumsApp:answer'  question.id %}">{{question.title}}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</center>
+
+{% endblock %}

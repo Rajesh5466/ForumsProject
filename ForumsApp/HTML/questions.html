@@ -1,0 +1,35 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<center>
+    {% if datalen %}
+        <table style="text-align:center;background-color:#E5EBF8;">
+            <tr>
+                <th>Total answers</th>
+                <th>Question title</th>
+                <th>TAGS</th>
+                <th>User who posted</th>
+                <th>Permissions</th>
+            </tr>
+        {% for question in data %}
+        <tr>
+            <td>{{question.count}}</td>
+            <td><a href="{% url 'ForumsApp:answer'  question.id %}">{{question.title}}</a></td>
+            <th>{{question.tags}}</th>
+            <td>{{question.username__username}}</td>
+            {% if request.user.username == question.username__username %}
+                <td><a href="{% url 'ForumsApp:editQuestion' question.id %}">Edit</a></td>
+            {% else %}
+                <td>---</td>
+            {% endif %}
+            {% if request.user.is_superuser %}
+            <td ><a href=""><button type="button" style="background-color: indianred;" class="btn btn-default active">delete</button></a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <h3 style="color:black">No Questions yet &#9786</h3>
+    {% endif %}
+</center>
+{% endblock %}

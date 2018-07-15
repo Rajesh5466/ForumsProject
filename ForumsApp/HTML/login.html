@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+
+{% block content %}
+{% if not request.user.is_authenticated %}
+<br>
+<br>
+<center>
+    <div style="width:400px;border:1px solid black;border-radius:20px;">
+        <br>
+        <center><h3><b>Welcome to Login page</b></h3></center>
+        <br>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            <fieldset>
+                <div >
+                    <label for="{{form.username.id_for_label}}">
+                        Username:
+                    </label>
+                        {{form.username}}
+                    <br>
+                    <br>
+                    <label for="{{form.password.id_for_label}}">
+                        Password :
+                    </label>
+                        {{form.password}}
+                </div>
+            </fieldset>
+            <br>&emsp;&emsp;<input class="btn btn-default active,btn btn-info btn-sm" type="submit" value="Login"/> &ensp;
+            <br>
+            &emsp;&emsp;Create an account? <a href="{% url 'ForumsApp:signup' %}">Register </a>
+            </form>
+            <br>
+    </div>
+</center>
+{% endif %}
+{% endblock %}
+
+

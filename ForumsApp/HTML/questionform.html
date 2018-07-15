@@ -1,0 +1,36 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<center>
+    <div style="width:450px;border:1px solid black;border-radius:20px;">
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            <fieldset>
+                        <table>
+                            <tr><td>
+                        <label for="{{form.title.id_for_label}}">
+                            Title:
+                        </label>
+                            </td><td>{{form.title}}
+                            </td></tr>
+                            <tr><td>
+                        <label for="{{form.description.id_for_label}}">
+                            Description:
+                        </label>
+                            </td><td>{{form.description}}
+                            </td></tr>
+                            <tr><td>
+                        <label for="{{form.tags.id_for_label}}">
+                            Tags:
+                        </label>
+                            </td><td>{{form.tags}}
+                            </td></tr>
+                        </table>
+            </fieldset>
+            <input class="btn btn-default active,btn btn-info btn-sm" type="submit" value="submit"/>
+        </form>
+        <br>
+    </div>
+</center>
+{% endblock %}
